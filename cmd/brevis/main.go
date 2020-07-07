@@ -1,16 +1,16 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/tomasff/brevis/internal/routes"
 	"log"
 )
 
 func main() {
-	r := gin.Default()
+	r := routes.SetupRouter()
 
 	err := r.Run()
 
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
 }
