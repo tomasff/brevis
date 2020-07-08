@@ -2,14 +2,16 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/tomasff/brevis/internal/controllers"
+	"github.com/tomasff/brevis/internal/models"
 )
 
-func SetupRouter() *gin.Engine {
+func SetupRouter(db *models.DB) *gin.Engine {
 	r := gin.Default()
 
-	r.GET("/:id", controllers.GetShort)
-	r.POST("/short", controllers.CreateShort)
+	shortService := &ShortService{db}
+
+	r.GET("/:id", shortService.GetShort)
+	r.POST("/short", shortService.CreateShort)
 
 	return r
 }
